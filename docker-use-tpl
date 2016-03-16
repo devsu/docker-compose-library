@@ -1,0 +1,82 @@
+#!/bin/bash
+RED="\e[1;31m"
+GREEN="\e[1;32m"
+BLUE="\e[1;34m"
+WHITE="\e[1;97m"
+YELLOW="\e[1;93m"
+NORMAL="\e[1;0m"
+
+function help {
+   	printf "${BLUE}\n\n./docker-use--tpl ${YELLOW}template name${NORMAL}"
+	printf "\n\n\t${YELLOW}template${NORMAL}: template basename\n\n"
+	printf "\t${YELLOW}name${NORMAL}: name of the project to create\n\n"
+}
+
+clear
+TPL=$1
+NAME=$2
+ERROR=0
+#testing vars
+if [ -z "$TPL" ]
+	then
+		printf "${RED}Template is missing${NORMAL}"
+		ERROR=1
+fi;
+#Removing last dot or extension
+TPL=${TPL%.*}
+if [ ! -e "$TPL.sh" ]
+	then
+		printf "${RED}Template $TPL.sh doesn't exists${NORMAL}"
+		ERROR=1
+fi;
+if [ -z "$NAME" ]
+	then
+		printf "\n${RED}Name is missing${NORMAL}"
+		ERROR=1
+fi;
+if [ ! -e "./containers" ]
+	then
+		printf "\n${RED}Folder \"containers\" doesn't exists${NORMAL}"
+		ERROR=1
+fi;
+if [ $ERROR -eq 1 ]
+	then
+		help
+		printf "\n\n"
+		exit 1
+fi
+
+printf "\n${YELLOW}All dockers are created the containers folder.${NORMAL}"
+printf "\n\n${GREEN}tpl:${NORMAL} $TPL"
+printf "\n${GREEN}name:${NORMAL} $NAME"
+
+printf "\n\n"
+
+if [ -d "containers/$NAME/" ]
+	then
+		printf "${RED}The folder containers/$NAME/ is already exists${NORMAL}"
+		while true; do
+			printf "\n"
+		    read -p "Do you wish to continue? (y/n), the files are going to be overwritten  " yn
+		    case $yn in
+		        [Yy]* ) break;;
+		        [Nn]* ) printf "\nCreation canceled\n";exit 1;;
+		        * ) echo "Please answer yes or no.";;
+		    esac
+		done
+fi;
+
+mkdir -p containers/$NAME
+if [ ! -d "containers/$NAME/" ]
+	then
+		printf "${RED}Can't create containers/$NAME/ folder${NORMAL}"
+		printf "\n\n"
+		exit 1;
+fi;
+
+cp $TPL.yml containers/$NAME/$NAME.yml
+cp $TPL.env containers/$NAME/$NAME.env
+
+printf "\n\n${GREEN}Project created\n${WHITE}Edit the ${RED}./containers/$NAME/$NAME.env${WHITE} file and then run:${NORMAL}"
+printf "\n\n${BLUE}\t./docker-create ${YELLOW}action${BLUE} $NAME ${NORMAL}"
+printf "\n\n\t\t${YELLOW}action${NORMAL}: create or up\n\n"
