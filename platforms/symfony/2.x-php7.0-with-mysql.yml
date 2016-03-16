@@ -1,0 +1,9 @@
+web:
+    image: devsu/php7-symfony-mysql:2.x
+    container_name: "${PROJECT}"
+    volumes:
+      - "${VOLUMEN_FOLDER}:/var/www"
+    external_links:
+      - "${MYSQL_DB}:mysql"
+    environment:
+      - "VIRTUAL_HOST=${VIRTUALHOST}"
