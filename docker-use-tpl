@@ -12,7 +12,6 @@ function help {
 	printf "\t${YELLOW}name${NORMAL}: name of the project to create\n\n"
 }
 
-clear
 TPL=$1
 NAME=$2
 ERROR=0

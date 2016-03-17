@@ -12,7 +12,6 @@ function help {
 	printf "\t${YELLOW}name${NORMAL}: name of the project\n\n"
 }
 
-clear
 ACTION=$1
 NAME=$2
 ERROR=0
