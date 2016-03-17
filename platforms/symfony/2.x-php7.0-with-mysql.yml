@@ -1,6 +1,6 @@
 web:
     image: devsu/php7-symfony-mysql:2.x
-    container_name: "${PROJECT}"
+    container_name: "${NAME}"
     volumes:
       - "${VOLUMEN_FOLDER}:/var/www"
     external_links:
