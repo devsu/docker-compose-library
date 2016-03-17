@@ -7,8 +7,8 @@ YELLOW="\e[1;93m"
 NORMAL="\e[1;0m"
 
 function help {
-   	printf "${BLUE}\n\n./docker-create ${YELLOW}action name${NORMAL}"
-	printf "\n\n\t${YELLOW}action${NORMAL}: create or up\n\n"
+   	printf "${BLUE}\n./docker-create ${YELLOW}action name${NORMAL}"
+	printf "\n\n\t${YELLOW}action${NORMAL}: create or up\n"
 	printf "\t${YELLOW}name${NORMAL}: name of the project\n\n"
 }
 
@@ -42,7 +42,7 @@ if [ -z "$NAME" ]
 fi;
 if [ $ERROR -eq 1 ]
 	then
-		printf "\n\n"
+		printf "\n"
 		help
 		exit 1
 fi

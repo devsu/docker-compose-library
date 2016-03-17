@@ -7,8 +7,8 @@ YELLOW="\e[1;93m"
 NORMAL="\e[1;0m"
 
 function help {
-   	printf "${BLUE}\n\n./docker-use-tpl ${YELLOW}template name${NORMAL}"
-	printf "\n\n\t${YELLOW}template${NORMAL}: template basename\n\n"
+   	printf "${BLUE}\n./docker-use-tpl ${YELLOW}template name${NORMAL}"
+	printf "\n\n\t${YELLOW}template${NORMAL}: template basename\n"
 	printf "\t${YELLOW}name${NORMAL}: name of the project to create\n\n"
 }
 
@@ -41,7 +41,7 @@ fi;
 if [ $ERROR -eq 1 ]
 	then
 		help
-		printf "\n\n"
+		printf "\n"
 		exit 1
 fi
 
