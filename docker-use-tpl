@@ -24,9 +24,9 @@ if [ -z "$TPL" ]
 fi;
 #Removing last dot or extension
 TPL=${TPL%.*}
-if [ ! -e "$TPL.sh" ]
+if [ ! -e "$TPL.yml" ]
 	then
-		printf "${RED}Template $TPL.sh doesn't exists${NORMAL}"
+		printf "${RED}Template $TPL.yml doesn't exists${NORMAL}"
 		ERROR=1
 fi;
 if [ -z "$NAME" ]
