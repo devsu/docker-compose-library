@@ -31,10 +31,10 @@ The difference between using `create` or `up` is that create only creates the co
 
 ## Conventions
 
-
-Set variables for [nginx-proxy](https://github.com/jwilder/nginx-proxy).
+- Set variables for [nginx-proxy](https://github.com/jwilder/nginx-proxy).
 - Connect to other containers using external links.
-- Links aliases are as simple as possible: e.g. wysql*
+- Links aliases are as simple as possible: e.g. **mysql** for a mysql database.
+- Variables are set in a different file (.env).
 
 ## License
 
