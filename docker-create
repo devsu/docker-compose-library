@@ -49,7 +49,7 @@ fi
 command -v docker-compose >/dev/null 2>&1 || { printf "\n${RED}docker-compose not found. Aborting.${NORMAL}\n\n" >&2; exit 1; }
 DOCKER_COMPOSE=`command -v docker-compose`
 COMPOSE_VERSION=`docker-compose -v`
-printf "\n\n${GREEN}Using:${NORMAL} $COMPOSE_VERSION\n\n"
+printf "\n${GREEN}Using:${NORMAL} $COMPOSE_VERSION\n\n"
 
 source "./containers/$NAME/$NAME.env"
 
