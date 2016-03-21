@@ -66,9 +66,9 @@ printf "\n${GREEN}name:${NORMAL} $NAME"
 
 printf "\n\n"
 
-if [ -d "$CREATION_PATH/" ]
+if [ -f "$CREATION_PATH/$NAME.yml" ]
 	then
-		printf "${RED}The folder $CREATION_PATH/ already exists${NORMAL}"
+		printf "${RED}The file $CREATION_PATH/$NAME.yml already exists${NORMAL}"
 		while true; do
 			printf "\n"
 		    read -p "Do you wish to continue? (y/n), the files are going to be overwritten  " yn
