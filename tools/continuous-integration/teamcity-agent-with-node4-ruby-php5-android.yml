@@ -1,0 +1,7 @@
+teamcity-agent:
+    image: devsu/teamcity-agent:node4-ruby-php5-android
+    container_name: "${NAME}"
+    environment:
+      - "TEAMCITY_SERVER=${TEAMCITY_SERVER_URL}"
+    volumes:
+      - "${DATA_PATH}:/home/teamcity"

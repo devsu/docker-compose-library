@@ -1,0 +1,7 @@
+teamcity:
+    image: devsu/teamcity-server:latest
+    container_name: "${NAME}"
+    volumes:
+      - "${DATA_PATH}:/data/teamcity"
+    environment:
+      - "VIRTUAL_HOST=${VIRTUAL_HOST}"
