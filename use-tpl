@@ -7,9 +7,7 @@ YELLOW="\e[1;93m"
 NORMAL="\e[1;0m"
 
 function help {
-   	printf "${BLUE}\n./use-tpl ${YELLOW}action path${NORMAL}"
-	printf "\n\n\t${YELLOW}action${NORMAL}: create or up\n"
-	printf "\t${YELLOW}path${NORMAL}: path of the project\n\n"
+   	printf "\nUsage: ${WHITE}\n./use-tpl ${YELLOW}[create|up] path${NORMAL}\n\n"
 }
 
 ACTION=$1
@@ -18,7 +16,7 @@ ERROR=0
 #testing vars
 if [ -z "$ACTION" ]
 	then
-		printf "${RED}Action is missing${NORMAL}"
+		printf "\n${RED}Action is missing${NORMAL}"
 		ERROR=1
 	else
 		OPTIONS=("create" "up")
@@ -31,7 +29,7 @@ if [ -z "$ACTION" ]
 fi;
 if [ -z "$CREATION_PATH" ]
 	then
-		printf "\n${RED}PAth is missing${NORMAL}"
+		printf "\n${RED}Path is missing${NORMAL}"
 		ERROR=1
 	else
 	if [ ! -e "${CREATION_PATH}.yml" ]

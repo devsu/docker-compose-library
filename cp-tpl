@@ -7,10 +7,10 @@ YELLOW="\e[1;93m"
 NORMAL="\e[1;0m"
 
 function help {
-   	printf "${BLUE}\n./cp-tpl ${YELLOW}template path name${NORMAL}"
+   	printf "\n\nUsage: ${WHITE}./cp-tpl template destination name${NORMAL}"
 	printf "\n\n\t${YELLOW}template${NORMAL}: template basename\n"
-	printf "\t${YELLOW}path${NORMAL}: path to create project\n"
-	printf "\t${YELLOW}name${NORMAL}: name of the project to create\n\n"
+	printf "\t${YELLOW}destination${NORMAL}: path to create project\n"
+	printf "\t${YELLOW}name${NORMAL}: name of the project to create\n"
 }
 
 TPL=$1
@@ -20,7 +20,7 @@ ERROR=0
 #testing vars
 if [ -z "$TPL" ]
 	then
-		printf "${RED}Template is missing${NORMAL}"
+		printf "\n${RED}Template is missing${NORMAL}"
 		ERROR=1
 fi;
 if [ -z "$CREATION_PATH" ]
@@ -51,7 +51,7 @@ fi;
 if [ ! -e "$CREATION_PATH" ]
 	then
 		while true; do
-			printf "\n\n${RED}Folder \"$CREATION_PATH\" doesn't exists${NORMAL}\n"
+			printf "\n${RED}Folder \"$CREATION_PATH\" doesn't exists${NORMAL}\n"
 		    read -p "Do you wish to create it?  (y/n)  " yn
 		    case $yn in
 		        [Yy]* ) break;;
@@ -61,17 +61,12 @@ if [ ! -e "$CREATION_PATH" ]
 		done
 fi;
 
-printf "\n\n${GREEN}tpl:${NORMAL} $TPL"
-printf "\n${GREEN}name:${NORMAL} $NAME"
-
-printf "\n\n"
-
 if [ -f "$CREATION_PATH/$NAME.yml" ]
 	then
-		printf "${RED}The file $CREATION_PATH/$NAME.yml already exists${NORMAL}"
+		printf "\n${RED}The file $CREATION_PATH/$NAME.yml already exists${NORMAL}\n"
 		while true; do
 			printf "\n"
-		    read -p "Do you wish to continue? (y/n), the files are going to be overwritten  " yn
+		    read -p "Do you wish to overwrite this file? (y/n) " yn
 		    case $yn in
 		        [Yy]* ) break;;
 		        [Nn]* ) printf "\nCreation canceled\n";exit 1;;
@@ -92,6 +87,6 @@ fi;
 cp $TPL.yml $CREATION_PATH/$NAME.yml
 cp ${TPL}_env $CREATION_PATH/${NAME}_env
 
-printf "\n\n${GREEN}Project created\n${WHITE}Edit the ${RED}${CREATION_PATH}/${NAME}_env${WHITE} file and then run:${NORMAL}"
-printf "\n\n${BLUE}\t./use-tpl ${YELLOW}action${BLUE} $CREATION_PATH/$NAME ${NORMAL}"
-printf "\n\n\t\t${YELLOW}action${NORMAL}: create or up\n\n"
+printf "\n${GREEN}Project created.\n\n${NORMAL}Edit the ${WHITE}${CREATION_PATH}/${NAME}_env${NORMAL} file and then run:"
+printf "\n\n${WHITE}\t./use-tpl ${YELLOW}[create|up]${WHITE} $CREATION_PATH/$NAME ${NORMAL}\n\n"
+
