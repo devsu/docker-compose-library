@@ -1,0 +1,10 @@
+web:
+    image: jwilder/nginx-proxy
+    container_name: "${NAME}"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "${CONFD_FOLDER}:/etc/nginx/vhost.d:ro"
+      - "${CERTS_FOLDER}:/etc/nginx/certs"
+    ports:
+      - "80:80"
+      - "443:443"      
