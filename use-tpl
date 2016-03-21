@@ -7,7 +7,7 @@ YELLOW="\e[1;93m"
 NORMAL="\e[1;0m"
 
 function help {
-   	printf "${BLUE}\n./docker-create ${YELLOW}action path${NORMAL}"
+   	printf "${BLUE}\n./use-tpl ${YELLOW}action path${NORMAL}"
 	printf "\n\n\t${YELLOW}action${NORMAL}: create or up\n"
 	printf "\t${YELLOW}path${NORMAL}: path of the project\n\n"
 }
@@ -36,7 +36,7 @@ if [ -z "$CREATION_PATH" ]
 	else
 	if [ ! -e "${CREATION_PATH}.yml" ]
 		then
-			printf "\n${RED}The project \"$$CREATION_PATH\" doesn't exists${NORMAL}"
+			printf "\n${RED}The project \"$CREATION_PATH\" doesn't exists${NORMAL}"
 			ERROR=1
 	fi;
 fi;

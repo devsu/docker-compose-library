@@ -15,17 +15,17 @@ First, clone this repo:
 
 `git clone https://github.com/devsu/docker-compose-library.git`
 
-Second, to use a template, use the `docker-use-tpl.sh` script. You will need to parameters: the name of the template, and the name of the project.
+Second, to use a template, use the `cp-tpl` script. You will need the next parameters: the name of the template, the path to create the copy, and the name of the project.
 
-`./docker-use-tpl platforms/symfony/2.x-php7.0-with-mysql.yml my-awesome-project`
+`./cp-tpl platforms/symfony/2.x-php7.0-with-mysql ../my-awsome-project-path my-awesome-project`
 
-You will get a copy of the template on the `containers` folder, with the name `my-awesome-project`
+You will get a copy of the template on the `../my-awsome-project-path` folder, with the name `my-awesome-project`
 
-Third, modify the variables inside `containers/my-awesome-project/my-awesome-project.env`
+Third, modify the variables inside `../my-awsome-project-path/my-awesome-project_env`
 
-Finally, you can use the `./docker-create` script to run docker composer using the variables in the file. 
+Finally, you can use the `./use-tpl` script to run docker composer using the variables in the file. 
 
-`./docker-create create my-awesome-project`
+`./use-tpl create ../my-awsome-project-path/my-awesome-project`
 
 The difference between using `create` or `up` is that create only creates the container while up creates it and then starts it.
 

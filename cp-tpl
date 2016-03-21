@@ -7,7 +7,7 @@ YELLOW="\e[1;93m"
 NORMAL="\e[1;0m"
 
 function help {
-   	printf "${BLUE}\n./docker-use-tpl ${YELLOW}template path name${NORMAL}"
+   	printf "${BLUE}\n./cp-tpl ${YELLOW}template path name${NORMAL}"
 	printf "\n\n\t${YELLOW}template${NORMAL}: template basename\n"
 	printf "\t${YELLOW}path${NORMAL}: path to create project\n"
 	printf "\t${YELLOW}name${NORMAL}: name of the project to create\n\n"
