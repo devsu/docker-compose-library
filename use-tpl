@@ -7,13 +7,13 @@ YELLOW="\e[1;93m"
 NORMAL="\e[1;0m"
 
 function help {
-   	printf "${BLUE}\n./docker-create ${YELLOW}action name${NORMAL}"
+   	printf "${BLUE}\n./docker-create ${YELLOW}action path${NORMAL}"
 	printf "\n\n\t${YELLOW}action${NORMAL}: create or up\n"
-	printf "\t${YELLOW}name${NORMAL}: name of the project\n\n"
+	printf "\t${YELLOW}path${NORMAL}: path of the project\n\n"
 }
 
 ACTION=$1
-NAME=$2
+CREATION_PATH=$2
 ERROR=0
 #testing vars
 if [ -z "$ACTION" ]
@@ -29,14 +29,14 @@ if [ -z "$ACTION" ]
 				ERROR=1
 			fi;
 fi;
-if [ -z "$NAME" ]
+if [ -z "$CREATION_PATH" ]
 	then
-		printf "\n${RED}Name is missing${NORMAL}"
+		printf "\n${RED}PAth is missing${NORMAL}"
 		ERROR=1
 	else
-	if [ ! -e "./containers/$NAME/$NAME.yml" ]
+	if [ ! -e "${CREATION_PATH}.yml" ]
 		then
-			printf "\n${RED}The project \"$NAME\" doesn't exists${NORMAL}"
+			printf "\n${RED}The project \"$$CREATION_PATH\" doesn't exists${NORMAL}"
 			ERROR=1
 	fi;
 fi;
@@ -51,6 +51,6 @@ DOCKER_COMPOSE=`command -v docker-compose`
 COMPOSE_VERSION=`docker-compose -v`
 printf "\n${GREEN}Using:${NORMAL} $COMPOSE_VERSION\n\n"
 
-source "./containers/$NAME/$NAME.env"
+source "${CREATION_PATH}_env"
 
-$DOCKER_COMPOSE -f  "./containers/$NAME/$NAME.yml" $ACTION
+$DOCKER_COMPOSE -f  "${CREATION_PATH}.yml" $ACTION

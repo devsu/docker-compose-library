@@ -1,0 +1,98 @@
+#!/bin/bash
+RED="\e[1;31m"
+GREEN="\e[1;32m"
+BLUE="\e[1;34m"
+WHITE="\e[1;97m"
+YELLOW="\e[1;93m"
+NORMAL="\e[1;0m"
+
+function help {
+   	printf "${BLUE}\n./docker-use-tpl ${YELLOW}template path name${NORMAL}"
+	printf "\n\n\t${YELLOW}template${NORMAL}: template basename\n"
+	printf "\t${YELLOW}path${NORMAL}: path to create project\n"
+	printf "\t${YELLOW}name${NORMAL}: name of the project to create\n\n"
+}
+
+TPL=$1
+CREATION_PATH=$2
+NAME=$3
+ERROR=0
+#testing vars
+if [ -z "$TPL" ]
+	then
+		printf "${RED}Template is missing${NORMAL}"
+		ERROR=1
+fi;
+#Removing last dot or extension
+if [ -z "$CREATION_PATH" ]
+	then
+		printf "\n${RED}Path is missing${NORMAL}"
+		ERROR=1
+fi;
+
+if [ -z "$NAME" ]
+	then
+		printf "\n${RED}Name is missing${NORMAL}"
+		ERROR=1
+fi;
+
+if [ $ERROR -eq 1 ]
+	then
+		help
+		printf "\n"
+		exit 1
+fi
+
+if [ ! -e "$TPL.yml" ]
+	then
+		printf "${RED}Template $TPL.yml doesn't exists${NORMAL}\n"
+		exit 1
+fi;
+
+if [ ! -e "$CREATION_PATH" ]
+	then
+		while true; do
+			printf "\n\n${RED}Folder \"$CREATION_PATH\" doesn't exists${NORMAL}\n"
+		    read -p "Do you wish to create it?  (y/n)  " yn
+		    case $yn in
+		        [Yy]* ) break;;
+		        [Nn]* ) printf "\n${RED}Folder \"$CREATION_PATH\" doesn't exists, can't continue${NORMAL}\n";exit 1;;
+		        * ) echo "Please answer yes or no.";;
+		    esac
+		done
+fi;
+
+printf "\n\n${GREEN}tpl:${NORMAL} $TPL"
+printf "\n${GREEN}name:${NORMAL} $NAME"
+
+printf "\n\n"
+
+if [ -d "$CREATION_PATH/" ]
+	then
+		printf "${RED}The folder $CREATION_PATH/ already exists${NORMAL}"
+		while true; do
+			printf "\n"
+		    read -p "Do you wish to continue? (y/n), the files are going to be overwritten  " yn
+		    case $yn in
+		        [Yy]* ) break;;
+		        [Nn]* ) printf "\nCreation canceled\n";exit 1;;
+		        * ) echo "Please answer yes or no.";;
+		    esac
+		done
+fi;
+
+mkdir -p $CREATION_PATH
+
+if [ ! -d "$CREATION_PATH/" ]
+	then
+		printf "${RED}Can't create $CREATION_PATH/ folder${NORMAL}"
+		printf "\n\n"
+		exit 1;
+fi;
+
+cp $TPL.yml $CREATION_PATH/$NAME.yml
+cp ${TPL}_env $CREATION_PATH/${NAME}_env
+
+printf "\n\n${GREEN}Project created\n${WHITE}Edit the ${RED}${CREATION_PATH}/${NAME}_env${WHITE} file and then run:${NORMAL}"
+printf "\n\n${BLUE}\t./use-tpl ${YELLOW}action${BLUE} $CREATION_PATH/$NAME ${NORMAL}"
+printf "\n\n\t\t${YELLOW}action${NORMAL}: create or up\n\n"
