@@ -14,7 +14,7 @@ function help {
 }
 
 TPL=$1
-CREATION_PATH=$2
+CREATION_PATH=${2%/}
 NAME=$3
 ERROR=0
 #testing vars
@@ -23,7 +23,6 @@ if [ -z "$TPL" ]
 		printf "${RED}Template is missing${NORMAL}"
 		ERROR=1
 fi;
-#Removing last dot or extension
 if [ -z "$CREATION_PATH" ]
 	then
 		printf "\n${RED}Path is missing${NORMAL}"
