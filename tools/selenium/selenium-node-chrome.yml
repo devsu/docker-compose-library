@@ -2,4 +2,4 @@ selenium-hub:
     image: selenium/node-chrome:latest
     container_name: "${NAME}"
     external_links:
-      - "${SELENIUM-HUB}:hub"
+      - "${SELENIUM_HUB}:hub"

@@ -2,6 +2,6 @@ selenium-hub:
     image: selenium/node-firefox-debug:latest
     container_name: "${NAME}"
     external_links:
-      - "${SELENIUM-HUB}:hub"
+      - "${SELENIUM_HUB}:hub"
     ports:
       - "${VNC_PORT}:5900"

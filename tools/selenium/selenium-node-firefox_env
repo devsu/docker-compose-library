@@ -1,2 +1,2 @@
 export NAME="selenium-firefox-1"
-export SELENIUM-HUB="selenium-hub"
+export SELENIUM_HUB="selenium-hub"
