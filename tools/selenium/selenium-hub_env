@@ -1,0 +1,2 @@
+export NAME="selenium-hub"
+export PORT=4444
