@@ -1,4 +1,4 @@
-selenium-hub:
+selenium-node-firefox:
     image: selenium/node-firefox:latest
     container_name: "${NAME}"
     external_links:
